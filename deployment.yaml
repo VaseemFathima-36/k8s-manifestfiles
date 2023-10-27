@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customnginxcontainer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: customnginxcontainer
+  template:
+    metadata:
+      labels:
+        app: customnginxcontainer
+    spec:
+      containers:
+        - name:  customnginxcontainer
+          image: 359917229379.dkr.ecr.us-east-1.amazonaws.com/customnginxecrrepo:latest
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: aws-secret  
